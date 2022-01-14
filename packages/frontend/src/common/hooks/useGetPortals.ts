@@ -38,7 +38,7 @@ const useGetPortals = (): ((force?: boolean) => void) => {
             const res = await fetchPortals(config)
 
             updatePortals(res)
-          } catch (err) {
+          } catch (err: any) {
             dispatch({ type: ErrorActionTypes.ADD, error: err.message })
           }
         }

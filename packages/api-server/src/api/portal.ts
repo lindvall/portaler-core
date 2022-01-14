@@ -136,12 +136,13 @@ router.post('/', async (req, res) => {
 
     res.sendStatus(204)
   } catch (err) {
+    const e = err as Error
     logger.error('Error setting portals', {
       user: req.userId,
       server: req.serverId,
       error: {
-        error: JSON.stringify(err),
-        trace: err.stack,
+        error: JSON.stringify(e),
+        trace: e.stack,
       },
     })
 
@@ -170,12 +171,13 @@ router.delete('/', async (req, res) => {
     await deleteServerPortal(portalIds, req.userId, req.serverId)
     res.sendStatus(204)
   } catch (err) {
+    const e = err as Error
     logger.error('Unable to delete', {
       user: req.userId,
       server: req.serverId,
       error: {
-        error: JSON.stringify(err),
-        trace: err.stack,
+        error: JSON.stringify(e),
+        trace: e.stack,
       },
     })
     res.sendStatus(500)

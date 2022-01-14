@@ -97,4 +97,6 @@ const ZoneSearch: FC<ZoneSearchProps> = ({
   )
 }
 
+ZoneSearch.defaultProps = { variant: 'standard', error: null, setFocus: 0 }
+
 export default ZoneSearch

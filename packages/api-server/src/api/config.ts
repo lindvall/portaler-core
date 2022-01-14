@@ -18,10 +18,11 @@ router.get('/', async (req, res) => {
       discordUrl: serverConfig.discordUrl,
     })
   } catch (err) {
+    const e = err as Error
     logger.error('Error fetching config', {
       error: {
-        error: JSON.stringify(err),
-        trace: err.stack,
+        error: JSON.stringify(e),
+        trace: e.stack,
       },
     })
     res.status(200).send({ publicRead: false, discordUrl: null })

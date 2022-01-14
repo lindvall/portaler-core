@@ -1,35 +1,36 @@
 import { FilterOptionsState } from '@material-ui/lab/useAutocomplete'
-import { filterZones, getMaxString, ZoneLight } from './zoneSearchUtils'
+import { filterZones, getMaxString } from './zoneSearchUtils'
+import { Zone } from '@portaler/types'
 
 describe('Test zoneSearchUtils', () => {
   describe('Test filterZones', () => {
-    const getState = (inputValue: string): FilterOptionsState<ZoneLight> => ({
+    const getState = (inputValue: string): FilterOptionsState<Zone> => ({
       inputValue,
       getOptionLabel: () => '',
     })
 
-    const testList: ZoneLight[] = [
-      { name: 'Stinkhag', value: 'stinkhag' },
-      { name: 'Sectun-Qinsom', value: 'sectun-qinsom' },
-      { name: 'Bank of Thetford', value: 'bank of thetford' },
-      { name: 'Bank of Lymhurst', value: 'bank of lymhurst' },
-      { name: 'Mushroom Cave', value: 'mushroom cave' },
-      { name: 'LEGACY-UNDEAD-02', value: 'legacy-undead-02' },
-      { name: 'HomeTerritory Skirmish', value: 'hometerritory skirmish' },
-      { name: 'Frostpeak Ascent', value: 'frostpeak ascent' },
-      { name: 'Flatrock Plateau', value: 'flatrock plateau' },
-      { name: 'Darkstone Drift', value: 'darkstone drift' },
-      { name: 'Windgrass Border', value: 'windgrass border' },
-      { name: 'Highstone Loch', value: 'highstone loch' },
-      { name: 'Chambers of Truth', value: 'chambers of truth' },
-      { name: "Conquerors' Hall Lvl. 1", value: "conquerors' hall lvl. 1" },
-      { name: 'Hasitos-Umayaum', value: 'hasitos-umayaum' },
-      { name: 'Tonitos-Uxavrom', value: 'tonitos-uxavrom' },
-      { name: 'PSG-0051', value: 'psg-0051' },
-      { name: 'DNG-0602', value: 'dng-0602' },
-      { name: 'PSG-0041', value: 'psg-0041' },
-      { name: 'Secent-Qi-Odesom', value: 'secent-qi-odesom' },
-      { name: 'Sectun-In-Qinsom', value: 'sectun-in-qinsom' },
+    const testList: Zone[] = [
+      { name: 'Stinkhag', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Sectun-Qinsom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Bank of Thetford', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Bank of Lymhurst', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Mushroom Cave', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'LEGACY-UNDEAD-02', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'HomeTerritory Skirmish', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Frostpeak Ascent', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Flatrock Plateau', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Darkstone Drift', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Windgrass Border', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Highstone Loch', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Chambers of Truth', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: "Conquerors' Hall Lvl. 1", id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Hasitos-Umayaum', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Tonitos-Uxavrom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'PSG-0051', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'DNG-0602', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'PSG-0041', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Secent-Qi-Odesom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+      { name: 'Sectun-In-Qinsom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
     ]
 
     test('starts with', () => {
@@ -48,8 +49,8 @@ describe('Test zoneSearchUtils', () => {
     })
 
     test('Test single entry', () => {
-      const singleList = [
-        { name: 'HomeTerritory Skirmish', value: 'hometerritory skirmish' },
+      const singleList: Zone[] = [
+        { name: 'HomeTerritory Skirmish', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
       ]
 
       expect(filterZones(singleList, getState('ho'))).toMatchObject(singleList)
@@ -62,30 +63,30 @@ describe('Test zoneSearchUtils', () => {
 
   describe('Test getMaxString', () => {
     test('Test common cases', () => {
-      const testList1: ZoneLight[] = [
-        { name: 'Sectun-Qinsom', value: 'sectun-qinsom' },
-        { name: 'Secent-Qi-Odesom', value: 'secent-qi-odesom' },
-        { name: 'Sectun-In-Qinsom', value: 'sectun-in-qinsom' },
+      const testList1: Zone[] = [
+        { name: 'Sectun-Qinsom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Secent-Qi-Odesom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Sectun-In-Qinsom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
       ]
 
       expect(getMaxString(testList1, 'se')).toBe('Sec')
       expect(getMaxString(testList1, 'sEc')).toBe('Sec')
 
-      const testList2: ZoneLight[] = [
-        { name: 'Bank of Thetford', value: 'bank of thetford' },
-        { name: 'Bank of Lymhurst', value: 'bank of lymhurst' },
-        { name: 'Bank of Batman', value: 'bank of batman' },
-        { name: 'Bank of Joker', value: 'bank of joker' },
+      const testList2: Zone[] = [
+        { name: 'Bank of Thetford', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Bank of Lymhurst', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Bank of Batman', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Bank of Joker', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
       ]
 
       expect(getMaxString(testList2, 'b')).toBe('Bank of ')
       expect(getMaxString(testList2, 'Ban')).toBe('Bank of ')
       expect(getMaxString(testList2, 'bAnk o')).toBe('Bank of ')
 
-      const testList3: ZoneLight[] = [
-        { name: 'Sectun-Qinsom', value: 'sectun-qinsom' },
-        { name: 'Sectun-Qi-Odesom', value: 'secent-qi-odesom' },
-        { name: 'Sectun-Qi-Qinsom', value: 'sectun-in-qinsom' },
+      const testList3: Zone[] = [
+        { name: 'Sectun-Qinsom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Sectun-Qi-Odesom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
+        { name: 'Sectun-Qi-Qinsom', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
       ]
 
       expect(getMaxString(testList3, 'se')).toBe('Sectun-Qi')
@@ -93,8 +94,8 @@ describe('Test zoneSearchUtils', () => {
     })
 
     test('Test single entry', () => {
-      const singleList = [
-        { name: 'HomeTerritory Skirmish', value: 'hometerritory skirmish' },
+      const singleList: Zone[] = [
+        { name: 'HomeTerritory Skirmish', id: 0, tier: 'tier', 'color': 'black', 'type': '' },
       ]
 
       expect(getMaxString(singleList, 'ho')).toBe('HomeTerritory Skirmish')

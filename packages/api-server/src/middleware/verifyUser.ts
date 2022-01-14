@@ -74,10 +74,11 @@ const verifyUser = async (req: Request, res: Response, next: NextFunction) => {
 
     next()
   } catch (err) {
+    const e = err as Error
     logger.warn('Error verifying user', {
       error: {
-        error: JSON.stringify(err),
-        trace: err.stack,
+        error: JSON.stringify(e),
+        trace: e.stack,
       },
     })
     return res.status(500).send({ error: 'Error Verifying User' })

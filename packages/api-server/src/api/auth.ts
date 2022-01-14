@@ -81,10 +81,11 @@ router.get('/callback', async (req, res) => {
 
     res.redirect(`${redirectUrl}/?token=${ourToken}`)
   } catch (err) {
+    const e = err as Error
     logger.error('Error logging in User', {
       error: {
-        error: JSON.stringify(err),
-        trace: err.stack,
+        error: JSON.stringify(e),
+        trace: e.stack,
       },
     })
     res.sendStatus(500)
