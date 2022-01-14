@@ -22,6 +22,7 @@ import ZoneSearch from '../ZoneSearch'
 import PortalSizeSelector from './PortalSizeSelector'
 import styles from './styles.module.scss'
 import useAddPortal from './useAddPortal'
+import CaptureAlbion from '../CaptureAlbion'
 
 const portalSizeValid = (size: PortalSize | null) =>
   size !== null && [0, 2, 7, 20].includes(size)
@@ -287,6 +288,16 @@ const MappingBar = () => {
               Create Connection
             </Button>
           </FormControl>
+        </div>
+        <div className={styles.row}>
+          <CaptureAlbion
+            setFrom={setFrom}
+            setTo={setTo}
+            setPortalSize={setPortalSize}
+            setHours={setHours}
+            setMinutes={setMinutes}
+            setErrors={setErrors}
+          />
         </div>
       </div>
     </form>
