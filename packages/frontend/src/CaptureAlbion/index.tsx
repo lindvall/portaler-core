@@ -146,7 +146,7 @@ const AlbionCapture: FC<AlbionCaptureProps> = ({
 
   async function startCapture() {
     try {
-      if (videoElem && videoElem.current && videoElem.current.srcObject) {
+      if (videoElem && videoElem.current) {
         videoElem.current.srcObject =
           await navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
         setStarted(true)
