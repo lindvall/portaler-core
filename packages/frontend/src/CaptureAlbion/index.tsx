@@ -122,14 +122,14 @@ const AlbionCapture: FC<AlbionCaptureProps> = ({
 
   // const addPortal = useAddPortal()
 
-  const videoElem = createRef<HTMLVideoElement>()
-  const mapElem = createRef<HTMLCanvasElement>()
-  const zoneElem = createRef<HTMLCanvasElement>()
-  const sizeElem = createRef<HTMLCanvasElement>()
-  const portalElem = createRef<HTMLCanvasElement>()
-  const portal2Elem = createRef<HTMLCanvasElement>()
-  const expiresElem = createRef<HTMLCanvasElement>()
-  const scaledElem = createRef<HTMLCanvasElement>()
+  const videoElem = useRef<HTMLVideoElement>(null)
+  const mapElem = useRef<HTMLCanvasElement>(null)
+  const zoneElem = useRef<HTMLCanvasElement>(null)
+  const sizeElem = useRef<HTMLCanvasElement>(null)
+  const portalElem = useRef<HTMLCanvasElement>(null)
+  const portal2Elem = useRef<HTMLCanvasElement>(null)
+  const expiresElem = useRef<HTMLCanvasElement>(null)
+  const scaledElem = useRef<HTMLCanvasElement>(null)
   const [started, setStarted] = useState(false)
   const [road, setRoad] = useState({
     zone: '',
@@ -419,11 +419,11 @@ const AlbionCapture: FC<AlbionCaptureProps> = ({
 
   function stopCapture() {
     if (videoElem && videoElem.current && videoElem.current.srcObject) {
-      videoElem.current.pause()
-      // const tracks = videoElem.current.srcObject.getTracks()
+      const stream = videoElem.current.srcObject as MediaStream
+      const tracks = stream.getTracks()
 
-      // tracks.forEach((track) => track.stop())
-      // videoElem.current.srcObject = null
+      tracks.forEach((track) => track.stop())
+      videoElem.current.srcObject = null
       setStarted(false)
     }
   }
